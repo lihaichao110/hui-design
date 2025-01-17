@@ -38,9 +38,9 @@ jobs:
           yarn config set "strict-ssl" false -g
 
       - name: install-python
-        uses: actions/setup-python@v2.3.2
+        uses: actions/setup-python@v5.1.0
         with:
-          python-version: 2.7.18
+          python-version: 2.7.1
 
       - name: deps-init
         run: yarn setup
