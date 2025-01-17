@@ -2,6 +2,9 @@ name: GitHub Actions Publish Npm
 
 run-name: ${{ github.actor }} Commit Messsage 🚀
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
 
@@ -29,14 +32,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: install-yarn
+        run: npm install -g yarn
+
       - name: deps-init
-        run: npm run setup
+        run: yarn setup
 
       - name: lint
-        run: npm run lint
+        run: yarn lint
 
       - name: build-ci
-        run: npm run build:ci
+        run: yarn build:ci
 
       - name: publish
         run: npm run publish
