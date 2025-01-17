@@ -48,11 +48,13 @@ jobs:
           # 使环境变量生效
           # 检查是否生效
           echo pyenv versions
+          pyenv install 2.7.18
+          pyenv global 2.7.18
 
       - name: install-python
         run: |
-          pyenv install 2.7.18
-          pyenv global 2.7.18
+          # pyenv install 2.7.18
+          # pyenv global 2.7.18
           python --version
 
       - name: deps-init
