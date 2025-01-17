@@ -33,7 +33,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: install-yarn
-        run: npm install -g yarn
+        run: |
+          npm install -g yarn
+          yarn config set "strict-ssl" false -g
 
       - name: deps-init
         run: yarn setup
