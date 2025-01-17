@@ -38,16 +38,21 @@ jobs:
           yarn config set "strict-ssl" false -g
           yarn config set "sass_binary_site" https://npm.taobao.org/mirrors/node-sass/ -g
 
+      - name: Install Pyenv
+        run: |
+          curl https://pyenv.run | bash
+          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+          echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+          echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+          echo 'eval "$(pyenv virtualenv-init -)"' >> ~/.bashrc
+          # 使环境变量生效
+          source ~/.bashrc
+
       - name: install-python
         run: |
-          sudo apt install pkg-config libreadline-dev libc6-dev libncursesw5-dev build-essential gdb pkg-config libbz2-dev libffi-dev libgdbm-dev liblzma-dev libncurses5-dev libreadline6-dev libsqlite3-dev libssl-dev lzma lzma-dev tk-dev uuid-dev zlib1g-dev libmpdec-dev
-          wget https://www.python.org/ftp/python/2.7.18/Python-2.7.18.tgz
-          tar -xzf Python-2.7.18.tgz
-          cd Python-2.7.18
-          ./configure
-          sudo make
-          sudo make install
-          python2 --version
+          pyenv install 2.7.18
+          pyenv global 2.7.18
+          python --version
 
       - name: deps-init
         run: yarn setup
