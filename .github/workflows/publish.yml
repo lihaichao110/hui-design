@@ -41,7 +41,6 @@ jobs:
       - name: Install Pyenv
         run: |
           curl -fsSL https://pyenv.run | bash
-          vim  ~/.bashrc
           echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
           echo '[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
           echo 'eval "$(pyenv init - bash)"' >> ~/.bashrc
@@ -49,7 +48,6 @@ jobs:
           # 使环境变量生效
           # 检查是否生效
           pyenv versions
-          exec "$SHELL"
 
       - name: install-python
         run: |
