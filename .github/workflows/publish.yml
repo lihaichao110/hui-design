@@ -37,6 +37,7 @@ jobs:
           npm install -g yarn
           yarn config set "strict-ssl" false -g
           yarn config set "sass_binary_site" https://npm.taobao.org/mirrors/node-sass/ -g
+          npm config set registry https://registry.npmjs.org/ -g
 
       - name: install-python
         uses: gabrielfalcao/pyenv-action@v17
@@ -57,7 +58,6 @@ jobs:
       - name: publish
         run: |
           npm config get registry
-          npm config set registry https://registry.npmjs.org/
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
