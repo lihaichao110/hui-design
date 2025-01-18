@@ -55,7 +55,10 @@ jobs:
         run: yarn build:ci
 
       - name: publish
-        run: npm publish
+        run: |
+          npm config get registry
+          npm config set registry https://registry.npmjs.org/
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
