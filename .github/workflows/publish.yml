@@ -13,14 +13,12 @@ on:
       - master
       - dev
       - lihaichao110-CICD
-# env:
-#   TEST: 'https://github.com/lihaichao110/hui-design'
-#   REPO_NAME: 'https://github.com/lihaichao110/hui-design'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: ${{ !github.event.repository.fork }}
+    # 判断是不是主项目触发的
+    if: ${{ github.event.repository.fork }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
