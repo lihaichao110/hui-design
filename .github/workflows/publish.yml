@@ -26,11 +26,11 @@ on:
         type: environment
         required: true
 
-  push:
-    branches:
-      - master
-      - dev
-      - lihaichao110-CICD
+  # push:
+  #   branches:
+  #     - master
+  #     - dev
+  #     - lihaichao110-CICD
 
 jobs:
   prebuild:
