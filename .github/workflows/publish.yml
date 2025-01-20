@@ -21,7 +21,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: github.repository == REPO_NAME
+    if: github.repository == ${{env.REPO_NAME}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
