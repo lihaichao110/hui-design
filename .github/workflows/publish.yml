@@ -13,14 +13,14 @@ on:
       - master
       - dev
       - lihaichao110-CICD
-env:
-  TEST: 'https://github.com/lihaichao110/hui-design'
-  REPO_NAME: 'https://github.com/lihaichao110/hui-design'
+# env:
+#   TEST: 'https://github.com/lihaichao110/hui-design'
+#   REPO_NAME: 'https://github.com/lihaichao110/hui-design'
 
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: github.repository == env.REPO_NAME
+    if: ${{ !github.event.repository.fork }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,6 +33,7 @@ jobs:
 
       - name: Install Yarn
         run: |
+          echo: github
           npm install -g yarn
           yarn config set "strict-ssl" false -g
           yarn config set "sass_binary_site" https://npm.taobao.org/mirrors/node-sass/ -g
