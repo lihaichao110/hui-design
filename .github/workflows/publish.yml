@@ -57,12 +57,13 @@ jobs:
       - name: Use Node.js Publish
         uses: actions/setup-node@v4
         with:
-          node-version: 20.16.0
+          node-version: '20.x'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: publish
         run: |
           npm -v
-          npm publish --registry=https://registry.npmjs.org/:_authToken=${{secrets.NPM_TOKEN}}
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
