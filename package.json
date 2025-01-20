@@ -1,6 +1,6 @@
 {
-  "name": "@lhc/hui-design",
-  "version": "0.0.10",
+  "name": "lihaichao-desgin",
+  "version": "0.0.7",
   "description": "小程序组件库",
   "templateInfo": {
     "name": "mobx",
