@@ -31,7 +31,6 @@ jobs:
 
       - name: Install Yarn
         run: |
-          echo "github: ${{ toJson(github) }}"
           npm install -g yarn
           yarn config set "strict-ssl" false -g
           yarn config set "sass_binary_site" https://npm.taobao.org/mirrors/node-sass/ -g
@@ -55,6 +54,7 @@ jobs:
       - name: Publish
         run: |
           npm publish
+          # npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
