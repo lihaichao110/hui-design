@@ -17,20 +17,15 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        node-version: [14.x]
-
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install Yarn
@@ -55,15 +50,8 @@ jobs:
       - name: Build
         run: yarn build:ci
 
-      # - name: Use Node.js Publish
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: '20.x'
-      #     registry-url: 'https://registry.npmjs.org'
-
-      - name: publish
+      - name: Publish
         run: |
-          npm -v
           npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
