@@ -4,6 +4,7 @@ run-name: ${{ github.actor }} Commit Messsage 🚀
 
 permissions:
   contents: read
+  
 env:
   TEST: 'https://github.com/lihaichao110/hui-design'
   REPO_NAME: 'https://github.com/lihaichao110/hui-design'
@@ -20,7 +21,7 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    if: github.repository == env.REPO_NAME
+    if: github.repository == REPO_NAME
     steps:
       - name: Checkout
         uses: actions/checkout@v4
