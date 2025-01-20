@@ -1,6 +1,6 @@
 name: GitHub Actions Publish Npm
 
-run-name: ${{ github.actor }} Commit Messsage 🚀
+run-name: ${{ github.actor }} Commit ${{github.head_commit.message}}
 
 permissions:
   contents: read
