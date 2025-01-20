@@ -40,7 +40,8 @@
     "commit": "npx git-cz",
     "release": "standard-version --commit-all",
     "prepare": "husky install",
-    "create-hook": "husky add .husky/commit-msg \"npx --no -- commitlint --edit ${1}\" && husky add .husky/pre-commit \"npx lint-staged\""
+    "create-hook": "husky add .husky/commit-msg \"npx --no -- commitlint --edit ${1}\" && husky add .husky/pre-commit \"npx lint-staged\"",
+    "up-version": "node scripts/updateVersion.mjs"
   },
   "repository": {
     "type": "git",
