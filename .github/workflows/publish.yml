@@ -32,26 +32,26 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: install-yarn
+      - name: Install Yarn
         run: |
           npm install -g yarn
           yarn config set "strict-ssl" false -g
           yarn config set "sass_binary_site" https://npm.taobao.org/mirrors/node-sass/ -g
 
-      - name: install-python
+      - name: Install Python
         uses: gabrielfalcao/pyenv-action@v17
         with:
           default: 2.7.18
 
-      - name: deps-init
+      - name: Init
         run: |
           python --version
           yarn setup
 
-      - name: lint
+      - name: Lint
         run: yarn lint
 
-      - name: build-ci
+      - name: Build
         run: yarn build:ci
 
       - name: Use Node.js Publish
@@ -62,7 +62,7 @@ jobs:
       - name: publish
         run: |
           npm -v
-          npm publish --registry=https://registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-        # env:
-        #   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          npm publish --registry=https://registry.npmjs.org/
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
