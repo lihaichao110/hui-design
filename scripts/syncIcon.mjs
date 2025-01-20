@@ -113,3 +113,5 @@ iconSync({
   fontFamily: 'hui-design-iconfont',
   outputTypePath: 'src/components/Icon/type.ts',
 })
+
+
