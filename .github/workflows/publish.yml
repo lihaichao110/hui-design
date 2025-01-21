@@ -60,6 +60,7 @@ jobs:
 
       - name: Commit Update Version Change
         run: |
+          git commit -m 'Update Version'
           git push --follow-tags origin HEAD:${{ github.ref }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
