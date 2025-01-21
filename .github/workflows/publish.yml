@@ -40,6 +40,11 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Update Version
+        run: |
+          echo inputs.AutomatedVersion
+          npm run up-version --setVersion=inputs.AutomatedVersion
+
       - name: Install Yarn
         run: |
           npm install -g yarn
@@ -60,7 +65,7 @@ jobs:
         run: |
           npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
 
-      - name: Commit and push changes
+      - name: Commit Update Version Change
         run: |
           git push --follow-tags origin HEAD:${{ github.ref }}
         env:
