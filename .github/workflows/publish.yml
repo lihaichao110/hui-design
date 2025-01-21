@@ -31,7 +31,7 @@ jobs:
     steps: 
       - name: pr
         run: |
-          echo github.event
+          echo ${{github.event}}
           
   prebuild:
     runs-on: ubuntu-latest
