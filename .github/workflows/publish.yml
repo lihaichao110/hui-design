@@ -42,7 +42,7 @@ jobs:
 
       - name: Update Version
         run: |
-          echo inputs.AutomatedVersion
+          echo "Deploying build:${{ inputs.AutomatedVersion }}"
           npm run up-version --setVersion=inputs.AutomatedVersion
 
       - name: Install Yarn
