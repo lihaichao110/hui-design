@@ -25,18 +25,9 @@ on:
       - dev
       - lihaichao110-CICD
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps: 
-      - name: pr
-        run: |
-          echo ${{github.event}}
-          
+jobs:   
   prebuild:
     runs-on: ubuntu-latest
-    # 判断是不是主项目触发的
-    if: github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'dev'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
