@@ -2,35 +2,28 @@ name: GitHub Actions Publish Npm
 
 run-name: ${{github.event.head_commit.message}}
 
-# permissions:
-#   contents: read
+permissions:
+  contents: write
   
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'
+      AutomatedVersion:
+        description: '手动选择升级版本并自动构建发布 npm'
         required: true
-        default: 'warning'
+        default: 'beta'
         type: choice
         options:
-        - info
-        - warning
-        - debug
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: boolean
-      environment:
-        description: 'Environment to run tests against'
-        type: environment
-        required: true
+        - major
+        - minor
+        - patch
+        - beta
 
-  # push:
-  #   branches:
-  #     - master
-  #     - dev
-  #     - lihaichao110-CICD
+  push:
+    branches:
+      - master
+      - dev
+      - lihaichao110-CICD
 
 jobs:
   prebuild:
@@ -62,6 +55,16 @@ jobs:
         run: |
           python --version
           yarn setup
+          
+      - name: Update Version
+        run: |
+          npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
+
+      - name: Commit and push changes
+        run: |
+          git push --follow-tags origin HEAD:${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Lint
         run: yarn lint
