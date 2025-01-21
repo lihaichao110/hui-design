@@ -29,7 +29,7 @@ jobs:
   prebuild:
     runs-on: ubuntu-latest
     # 判断是不是主项目触发的
-    if: ${{ github.event.repository.fork }}
+    if: github.event.pull_request.base.ref == 'main' || github.event.pull_request.base.ref == 'dev'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,13 +40,9 @@ jobs:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - name: Update Version
-        run: |
-          echo "Deploying build:${{ inputs.AutomatedVersion }}"
-          npm run up-version --setVersion=inputs.AutomatedVersion
-
       - name: Install Yarn
         run: |
+          echo github.event
           npm install -g yarn
           yarn config set "strict-ssl" false -g
           yarn config set "sass_binary_site" https://npm.taobao.org/mirrors/node-sass/ -g
