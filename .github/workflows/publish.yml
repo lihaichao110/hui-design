@@ -42,7 +42,6 @@ jobs:
           
       - name: Update Version
         run: |
-          yarn release
           npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
 
       - name: Commit Update Version Change
