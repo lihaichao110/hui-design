@@ -38,7 +38,7 @@
     "docs:build:prod": "cross-env BUILD_ENV=prod npm run docs:build",
     "icon:sync": "node scripts/syncIcon.mjs",
     "commit": "npx git-cz",
-    "release": "standard-version --commit-all",
+    "release": "standard-version",
     "prepare": "husky install",
     "create-hook": "husky add .husky/commit-msg \"npx --no -- commitlint --edit ${1}\" && husky add .husky/pre-commit \"npx lint-staged\"",
     "up-version": "node scripts/updateVersion.mjs"
