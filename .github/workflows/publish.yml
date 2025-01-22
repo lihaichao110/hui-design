@@ -39,20 +39,6 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
-          
-      - name: Update Version
-        run: |
-          npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
-
-      - name: Commit Update Version Change
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add package.json
-          git commit -m 'refactor: Update Version测试'
-          git push -f origin HEAD:${{ github.ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Cache node_modules
         uses: actions/cache@v4.2.0
@@ -68,40 +54,40 @@ jobs:
           yarn config set "strict-ssl" false -g
           yarn config set "sass_binary_site" https://npm.taobao.org/mirrors/node-sass/ -g
 
-      # - name: Install Python
-      #   uses: gabrielfalcao/pyenv-action@v17
-      #   with:
-      #     default: 2.7.18
+      - name: Install Python
+        uses: gabrielfalcao/pyenv-action@v17
+        with:
+          default: 2.7.18
 
-      # - name: Init
-      #   run: |
-      #     python --version
-      #     yarn setup
+      - name: Init
+        run: |
+          python --version
+          yarn setup
           
-      # - name: Update Version
-      #   run: |
-      #     npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
+      - name: Update Version
+        run: |
+          npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
 
-      # - name: Commit Update Version Change
-      #   run: |
-      #     git config --global user.name "GitHub Actions"
-      #     git config --global user.email "actions@github.com"
-      #     git add package.json
-      #     git commit -m 'refactor: Update Version'
-      #     git push origin HEAD:${{ github.ref }}
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Commit Update Version Change
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add package.json
+          git commit -m 'refactor: Update Version'
+          git push origin HEAD:${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # - name: Lint
-      #   run: yarn lint
+      - name: Lint
+        run: yarn lint
 
-      # - name: Build
-      #   run: yarn build:ci
+      - name: Build
+        run: yarn build:ci
 
-      # - name: Publish
-      #   run: |
-      #     npm publish
-          # npm publish --access public
-        # env:
-        #   NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Publish
+        run: |
+          npm publish
+          npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
 
