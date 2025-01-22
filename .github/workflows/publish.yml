@@ -37,6 +37,10 @@ jobs:
         with:
           node-version: '14.x'
           registry-url: 'https://registry.npmjs.org'
+          
+      - name: Update Version
+        run: |
+          npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
 
       - name: Commit Update Version Change
         run: |
