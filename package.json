@@ -1,6 +1,6 @@
 {
   "name": "lhc-design",
-  "version": "9.9.96-beta.1",
+  "version": "0.0.1-beta.98",
   "description": "小程序组件库",
   "templateInfo": {
     "name": "mobx",
