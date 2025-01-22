@@ -19,12 +19,6 @@ on:
         - patch
         - beta
 
-  push:
-    branches:
-      - master
-      - dev
-      - lihaichao110-CICD
-
 jobs:   
   prebuild:
     runs-on: ubuntu-latest
