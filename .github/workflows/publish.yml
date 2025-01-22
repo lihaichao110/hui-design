@@ -71,34 +71,34 @@ jobs:
         with:
           default: 2.7.18
 
-      - name: Init
-        run: |
-          python --version
-          yarn setup
+      # - name: Init
+      #   run: |
+      #     python --version
+      #     yarn setup
           
-      - name: Update Version
-        run: |
-          npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
+      # - name: Update Version
+      #   run: |
+      #     npm run up-version --setVersion=${{ inputs.AutomatedVersion }}
 
-      - name: Commit Update Version Change
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add package.json
-          git commit -m 'refactor: Update Version'
-          git push origin HEAD:${{ github.ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Commit Update Version Change
+      #   run: |
+      #     git config --global user.name "GitHub Actions"
+      #     git config --global user.email "actions@github.com"
+      #     git add package.json
+      #     git commit -m 'refactor: Update Version'
+      #     git push origin HEAD:${{ github.ref }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Lint
-        run: yarn lint
+      # - name: Lint
+      #   run: yarn lint
 
-      - name: Build
-        run: yarn build:ci
+      # - name: Build
+      #   run: yarn build:ci
 
-      - name: Publish
-        run: |
-          npm publish
+      # - name: Publish
+      #   run: |
+      #     npm publish
           # npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
