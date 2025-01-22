@@ -17,7 +17,7 @@ function updateVersion() {
     const packagePath = path.resolve('./package.json');
     const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
 
-    packageJson.version = '1.1.7'
+    packageJson.version = '1.1.8'
     fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2))
   } catch (error) {
     process.exit(1);
