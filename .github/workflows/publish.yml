@@ -86,7 +86,6 @@ jobs:
 
       - name: Publish
         run: |
-          npm access ls-packages
           npm config get registry
           npm publish --access public
         env:
